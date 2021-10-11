@@ -54,7 +54,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         database = RoomDB.getInstance(context);
 
         // Set text on text view
-        holder.textView.setText(data.getText());
+        holder.textView.setText(data.getName());
+        holder.textView1.setText(data.getName_class());
+
 
         holder.iv_edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +69,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 int sID = mainData.getId();
 
                 // Get text
-                String sText = mainData.getText();
+                String sText = mainData.getName();
+                String sText2 = mainData.getName_class();
 
                 // Create dialog
                 Dialog dialog = new Dialog(context);
@@ -88,10 +91,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
                 // Initialize and assign variable
                 EditText editText = dialog.findViewById(R.id.et_editText);
+                EditText editText1 = dialog.findViewById(R.id.et_editText1);
                 Button btn_update = dialog.findViewById(R.id.btn_update);
 
                 // Set text on edit text
                 editText.setText(sText);
+                editText1.setText(sText2);
 
                 btn_update.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -102,9 +107,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
                         // Get updated text from edit text
                         String uText = editText.getText().toString().trim();
+                        String uText2 = editText1.getText().toString().trim();
 
                         //Update text in database
-                        database.mainDAO().update(sID,uText);
+                        database.mainDAO().update(sID,uText,uText2);
 
                         // Notify when data is updated
                         dataList.clear();
@@ -143,7 +149,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         //Initialize variable
-        TextView textView;
+        TextView textView, textView1;
         ImageView iv_edit, iv_delete;
 
         public ViewHolder(@NonNull View itemView) {
@@ -151,8 +157,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
             // Assign variable
             textView = itemView.findViewById(R.id.tv_textView);
+            textView1 = itemView.findViewById(R.id.tv_textView1);
             iv_edit = itemView.findViewById(R.id.iv_edit);
             iv_delete = itemView.findViewById(R.id.iv_delete);
+
+
         }
     }
 }

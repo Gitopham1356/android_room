@@ -18,7 +18,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     // Initialize variable
 
-    EditText editText;
+    EditText editText, editText2;
     Button btn_add, btn_reset;
     RecyclerView recyclerView;
 
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Assign variable
         editText = findViewById(R.id.et_editText);
+        editText2 = findViewById(R.id.et_editText2);
         btn_add = findViewById(R.id.btn_add);
         btn_reset = findViewById(R.id.btn_reset);
         recyclerView = findViewById(R.id.rev_recyclerView);
@@ -64,22 +65,25 @@ public class MainActivity extends AppCompatActivity {
 
                 // Get string from edit text
                 String stext = editText.getText().toString().trim();
+                String stext2 = editText2.getText().toString().trim();
 
                 // Check condition
-                if(!stext.equals("")){
+                if(!stext.equals("") || !stext2.equals("")){
 
                     // When text is not empty
                     // Initialize main data
                     MainData mainData = new MainData();
 
                     // Set text on main data
-                    mainData.setText(stext);
+                    mainData.setName(stext);
+                    mainData.setName_class(stext2);
 
                     // Insert text in database
                     database.mainDAO().insert(mainData);
 
                     // Clear edit text
                     editText.setText("");
+                    editText2.setText("");
 
                     // Notify when data is inserted
                     dataList.clear();
