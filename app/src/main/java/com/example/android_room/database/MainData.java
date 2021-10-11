@@ -22,8 +22,11 @@ public class MainData implements Serializable{
         private int id;
 
         // Create text column
-        @ColumnInfo(name = "text")
-        private String text;
+        @ColumnInfo(name = "name")
+        private String name;
+
+        @ColumnInfo(name = "class")
+        private String st_class;
 
 }
 

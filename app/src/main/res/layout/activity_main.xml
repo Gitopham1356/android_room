@@ -11,7 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/et_editText"
-        android:hint="Enter text"
+        android:hint="Enter name"
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_editText1"
+        android:hint="Enter class"
         android:padding="12dp"
         android:background="@android:drawable/editbox_background"/>
 
